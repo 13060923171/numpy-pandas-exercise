@@ -37,33 +37,35 @@ def get_date():
             count += 1
             if count+1 == len(itemid):
                 break
-        if len(itemid_list) >= 20:
-            sum_itemid.append(itemid_list)
-            sum_userid.append(userid_list)
-            itemid_list = []
-            userid_list = []
-            count += 1
+
+        sum_itemid.append(itemid_list)
+        sum_userid.append(userid_list)
+        itemid_list = []
+        userid_list = []
+        count += 1
 
     return sum_itemid,sum_userid
 
 def txt_itemid(sum_itemid):
     count = 0
     for s in sum_itemid:
-        for i in s:
-            with open('item_list.txt', 'a', encoding='utf-8')as f:
-                a = str(i) + " " + str(count)
-                f.write(a + '\n')
-                count += 1
+        if len(s) >= 20:
+            for i in s:
+                with open('item_list.txt', 'a', encoding='utf-8')as f:
+                    a = str(i) + " " + str(count)
+                    f.write(a + '\n')
+                    count += 1
 
 
 def txt_userid(sum_userid):
     count = 0
     for s in sum_userid:
-        with open('userid_list.txt', 'a', encoding='utf-8')as f:
-            a = str(s[0]) + " " + str(count)
-            f.write(a + '\n')
-            count += 1
-            print(count)
+        if len(s) >= 20:
+            with open('userid_list.txt', 'a', encoding='utf-8')as f:
+                a = str(s[0]) + " " + str(count)
+                f.write(a + '\n')
+                count += 1
+                print(count)
 
 
 if __name__ == '__main__':

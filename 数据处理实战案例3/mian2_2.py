@@ -102,15 +102,16 @@ if __name__ == '__main__':
             count += 1
             if count + 1 == len(itemid1):
                 break
-        if len(itemid_list) >= 20:
-            sum_itemid.append(itemid_list)
-            sum_userid.append(userid_list)
-            itemid_list = []
-            userid_list = []
-            count += 1
+        # if len(itemid_list) >= 20:
+        sum_itemid.append(itemid_list)
+        sum_userid.append(userid_list)
+        itemid_list = []
+        userid_list = []
+        count += 1
 
     for i, j in tqdm(zip(sum_userid, sum_itemid)):
-        with open('rating.txt', 'a', encoding='utf-8')as f:
-            j.insert(0, i[0])
-            a = ' '.join('%s' % id for id in j)
-            f.write(a + '\n')
+        if len(i) >= 20:
+            with open('rating.txt', 'a', encoding='utf-8')as f:
+                j.insert(0, i[0])
+                a = ' '.join('%s' % id for id in j)
+                f.write(a + '\n')
